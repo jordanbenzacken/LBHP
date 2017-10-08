@@ -1,15 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {getBooksActionCreator} from '../../redux/actions.js';
 import Card from '../card';
 import './list.css';
 
 class List extends React.Component {
-    componentWillMount() {
-        this
-            .props
-            .getBooksActionCreator();
-    }
     render() {
         return (
             <div className='list'>
@@ -21,6 +14,4 @@ class List extends React.Component {
         )
     }
 }
-export default connect((state = {}) => state, (dispatch, props) => Object.assign({}, props, {
-    getBooksActionCreator: getBooksActionCreator.bind(null, dispatch)
-}))(List);
+export default List;

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
-import List from './components/list'
+import logo from './assets/polygon-harry.jpg';
+import SearchView from './views/search-view';
 import './App.css';
 
 class App extends Component {
@@ -8,11 +8,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
+          <img src={logo} className="app-logo" alt="logo"/>
           <h1 className="App-title">Welcome to Super Potier Store</h1>
         </header>
         <body className="App-body">
-          <List/>
+          <SearchView/>
         </body>
       </div>
     );
