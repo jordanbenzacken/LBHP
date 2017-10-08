@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import logo from './assets/polygon-harry.jpg';
 import SearchView from './views/search-view';
+
 import './App.css';
 
 class App extends Component {
