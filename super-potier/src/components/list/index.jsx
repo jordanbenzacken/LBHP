@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getBooksActionCreator} from '../redux/actions.js';
-import Card from './card'
+import {getBooksActionCreator} from '../../redux/actions.js';
+import Card from '../card';
+import './list.css';
 
 class List extends React.Component {
     componentWillMount() {
