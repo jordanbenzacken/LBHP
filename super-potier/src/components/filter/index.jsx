@@ -3,12 +3,13 @@ import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {connect} from 'react-redux';
 import {filterBooksActionCreator} from '../../redux/actions.js';
+import './filter.css';
 
 class FilterBook extends React.Component {
     render() {
         console.log(this.props);
         return (
-            <div>
+            <div className='filter'>
                 <MuiThemeProvider>
                     <TextField
                         hintText="Search by book, reference, ..."
