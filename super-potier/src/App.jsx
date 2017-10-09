@@ -4,9 +4,9 @@ import SearchView from './views/search-view';
 import Detail from './views/detail';
 import NoMatch from './views/no-match';
 
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
-import './App.css';
+import './styles';
 
 class App extends Component {
   render() {
