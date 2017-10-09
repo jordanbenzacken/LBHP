@@ -11,6 +11,11 @@ function reducer(state, action) {
                 .books
                 .filter((book) => book.title.toLowerCase().includes(newState.filter.toLowerCase()));
             break;
+        case "GET_ITEM_DETAIL":
+            newState.detail = action
+                .payload
+                .find((book) => book.isbn === action.isbn);
+            break;
         default:
             return state;
     }

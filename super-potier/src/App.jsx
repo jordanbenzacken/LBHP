@@ -20,7 +20,7 @@ class App extends Component {
           <body className="App-body">
             <Switch>
               <Route exact path="/" component={SearchView}/>
-              <Route path="/detail" component={Detail}/>
+              <Route path="/detail/:isbn" component={Detail}/>
               <Route component={NoMatch}/>
             </Switch>
           </body>
