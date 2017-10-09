@@ -16,8 +16,13 @@ function getBookDetailActionCreator(dispatch, isbn) {
         .then(data => dispatch({type: "GET_ITEM_DETAIL", payload: data, isbn: isbn}), error => dispatch({type: "REQUEST_FAILED", error: error}))
 }
 
+function addToBasketActionCreator(dispatch, newBook) {
+    return dispatch({type: "ADD_TO_BASKET", newBook: newBook});
+}
+
 module.exports = {
     getBooksActionCreator: getBooksActionCreator,
     filterBooksActionCreator: filterBooksActionCreator,
-    getBookDetailActionCreator: getBookDetailActionCreator
+    getBookDetailActionCreator: getBookDetailActionCreator,
+    addToBasketActionCreator: addToBasketActionCreator
 };

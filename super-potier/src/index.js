@@ -6,6 +6,8 @@ import reducers from './redux/reducers';
 import App from './App.jsx';
 import registerServiceWorker from './registerServiceWorker';
 import thunk from 'redux-thunk';
+import 'material-design-icons/iconfont/material-icons.css'
+
 // use SASS ? See doc react-script. post css ? i18n , devtools, react-router
 // TODO : filter search, popin detail, add to basket with new view, header
 // package nicely

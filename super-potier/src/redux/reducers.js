@@ -16,6 +16,16 @@ function reducer(state, action) {
                 .payload
                 .find((book) => book.isbn === action.isbn);
             break;
+        case "ADD_TO_BASKET":
+            const newBook = action.newBook;
+            if (!newState.basket) {
+                newState.basket = [newBook.isbn]
+            } else if (!newState.basket.includes(newBook.isbn)) {
+                newState
+                    .basket
+                    .push(newBook.isbn)
+            }
+            break;
         default:
             return state;
     }
