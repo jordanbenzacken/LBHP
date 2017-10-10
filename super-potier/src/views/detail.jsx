@@ -1,5 +1,5 @@
 import React from 'react';
-import {getBookDetailActionCreator} from '../redux/actions';
+import {getBookDetailActionCreator, addToBasketActionCreator} from '../redux/actions';
 import {connect} from 'react-redux';
 
 class Detail extends React.Component {
@@ -32,6 +32,9 @@ class Detail extends React.Component {
                     <div className='first-child'>
                         {this._renderDescription(detail.synopsis)}
                         {this._renderPrice(detail.price)}
+                        <div onClick={() => this._addToBasket(detail)}>
+                            <i className="material-icons">add_shopping_cart</i>
+                        </div>
                     </div>
                 </div>
             )
@@ -39,7 +42,9 @@ class Detail extends React.Component {
     }
     _renderDescription(descriptionList) {
         return (
-            <div className='description'>{descriptionList.map((description, i) => <p key={"synopsis-" + i}>{description}</p>)}</div>
+            <div className='description'>
+                {descriptionList.map((description, i) => <p key={"synopsis-" + i}>{description}</p>)}
+            </div>
         )
     }
     _renderPrice(price) {
@@ -47,7 +52,13 @@ class Detail extends React.Component {
             <div className='price'>{price + ' $'}</div>
         )
     }
+    _addToBasket(detail) {
+        this
+            .props
+            .addToBasketActionCreator(detail);
+    }
 }
 export default connect((state = {}) => state, (dispatch, props) => Object.assign({}, props, {
-    getBookDetailActionCreator: getBookDetailActionCreator.bind(null, dispatch)
+    getBookDetailActionCreator: getBookDetailActionCreator.bind(null, dispatch),
+    addToBasketActionCreator: addToBasketActionCreator.bind(null, dispatch)
 }))(Detail);

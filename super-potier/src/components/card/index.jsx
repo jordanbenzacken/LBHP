@@ -20,7 +20,7 @@ class Card extends React.Component {
         )
     }
     _addToBasket(e, book) {
-        //avoid redirect.
+        //avoid redirecting.
         e.preventDefault();
         this
             .props
