@@ -1,5 +1,5 @@
 .card {
-    flex: 1 0 25%;  
+    flex-basis: 20em; //responsive
     max-width: 400px;
     max-height: 200px;
     cursor: pointer;
