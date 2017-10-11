@@ -3,6 +3,7 @@ import logo from './assets/polygon-harry.jpg';
 import SearchView from './views/search-view';
 import Detail from './views/detail';
 import NoMatch from './views/no-match';
+import Basket from './components/basket';
 
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
@@ -16,6 +17,7 @@ class App extends Component {
           <header className="App-header">
             <img src={logo} className="app-logo" alt="logo"/>
             <h1 className="App-title">Welcome to Super Potier Store</h1>
+            <Basket/>
           </header>
           <body className="App-body">
             <Switch>
