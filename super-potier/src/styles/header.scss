@@ -1,7 +1,6 @@
 .App-header{
     [data-component='basket']{
-        position: absolute;
-        right: 10px;
-        top: 10px;
+        float: right;
+        margin-top: -50px;
     }        
 }

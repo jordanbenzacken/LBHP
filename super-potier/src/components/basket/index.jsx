@@ -6,17 +6,28 @@ import './basket.css';
 
 class Basket extends React.Component {
     render() {
-        const basketCount = this.props.basket && this.props.basket.length;
         return (
             <div data-component='basket'>
                 <MuiThemeProvider>
-                    <Badge badgeContent={basketCount} primary={true}>
-                        <i class="material-icons">shopping_cart</i>
-                    </Badge>
+                    {this._renderBasketIcon()}
                 </MuiThemeProvider>
             </div>
         )
-    }
-};
+    };
+    _renderBasketIcon() {
+        const basketCount = this.props.basket && this.props.basket.length;
+        let badgeStyle;
+        if (!basketCount) {
+            badgeStyle = {
+                backgroundColor: 'transparent'
+            }
+        }
+        return (
+            <Badge badgeContent={basketCount} primary={true} badgeStyle={badgeStyle}>
+                <i class="material-icons">shopping_cart</i>
+            </Badge>
+        );
+    };
+}
 
 export default connect((state = {}) => state, (dispatch, props) => Object.assign({}, props, {}))(Basket);
