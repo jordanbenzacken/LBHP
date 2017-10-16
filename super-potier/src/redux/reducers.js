@@ -29,7 +29,10 @@ function reducer(state, action) {
                 newState
                     .basket
                     .push(newBook)
-
+                //to keep basket after refresh.
+                window
+                    .sessionStorage
+                    .setItem('basket', JSON.stringify(newState.basket));
                 // slice is to be sure we clone the array and don't modify array per ref.
                 // otherwise redux behavior would be unexpected and components could not
                 // re-render when redux state change
