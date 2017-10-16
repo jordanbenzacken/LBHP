@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import logo from './assets/polygon-harry.jpg';
 import SearchView from './views/search-view';
 import Detail from './views/detail';
+import BasketDetail from './views/basket-detail';
 import NoMatch from './views/no-match';
 import Basket from './components/basket';
 
@@ -23,6 +24,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={SearchView}/>
               <Route path="/detail/:isbn" component={Detail}/>
+              <Route path="/basket/detail" component={BasketDetail}/>
               <Route component={NoMatch}/>
             </Switch>
           </body>

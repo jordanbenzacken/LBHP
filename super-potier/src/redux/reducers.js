@@ -19,7 +19,7 @@ function reducer(state, action) {
         case "ADD_TO_BASKET":
             const newBook = action.newBook;
             if (!newState.basket) {
-                newState.basket = [newBook.isbn]
+                newState.basket = [newBook]
             } else if (!newState.basket.includes(newBook.isbn)) {
                 //copy array per value.
                 newState.basket = newState
@@ -28,7 +28,7 @@ function reducer(state, action) {
                 //push
                 newState
                     .basket
-                    .push(newBook.isbn)
+                    .push(newBook)
 
                 // slice is to be sure we clone the array and don't modify array per ref.
                 // otherwise redux behavior would be unexpected and components could not

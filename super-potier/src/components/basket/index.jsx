@@ -2,15 +2,18 @@ import React from 'react';
 import Badge from 'material-ui/Badge';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import './basket.css';
 
 class Basket extends React.Component {
     render() {
         return (
             <div data-component='basket'>
-                <MuiThemeProvider>
-                    {this._renderBasketIcon()}
-                </MuiThemeProvider>
+                <Link to={this._getBasketDetailRoute()}>
+                    <MuiThemeProvider>
+                        {this._renderBasketIcon()}
+                    </MuiThemeProvider>
+                </Link>
             </div>
         )
     };
@@ -28,6 +31,10 @@ class Basket extends React.Component {
             </Badge>
         );
     };
+
+    _getBasketDetailRoute() {
+        return ('/basket/detail')
+    }
 }
 
 export default connect((state = {}) => state, (dispatch, props) => Object.assign({}, props, {}))(Basket);
