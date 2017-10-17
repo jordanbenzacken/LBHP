@@ -20,7 +20,7 @@ function reducer(state, action) {
             const newBook = action.newBook;
             if (!newState.basket) {
                 newState.basket = [newBook]
-            } else if (!newState.basket.includes(newBook.isbn)) {
+            } else if (!newState.basket.map(book => book.isbn).includes(newBook.isbn)) {
                 //copy array per value.
                 newState.basket = newState
                     .basket
@@ -29,18 +29,35 @@ function reducer(state, action) {
                 newState
                     .basket
                     .push(newBook)
-                //to keep basket after refresh.
-                window
-                    .sessionStorage
-                    .setItem('basket', JSON.stringify(newState.basket));
                 // slice is to be sure we clone the array and don't modify array per ref.
                 // otherwise redux behavior would be unexpected and components could not
                 // re-render when redux state change
             }
             break;
+        case "REMOVE_FROM_BASKET":
+            const book = action.book;
+            const removeIndex = newState
+                .basket
+                .map(book => book.isbn)
+                .indexOf(book.isbn);
+            if (removeIndex !== -1) {
+                //copy array per value.
+                newState.basket = newState
+                    .basket
+                    .slice()
+                newState
+                    .basket
+                    .splice(removeIndex, 1);
+            }
+
+            break;
         default:
             return state;
     }
+    //to keep basket after refresh.
+    window
+        .sessionStorage
+        .setItem('basket', JSON.stringify(newState.basket));
     return newState;
 }
 module.exports = reducer;

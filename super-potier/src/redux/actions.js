@@ -20,9 +20,14 @@ function addToBasketActionCreator(dispatch, newBook) {
     return dispatch({type: "ADD_TO_BASKET", newBook: newBook});
 }
 
+function removeFromBasketActionCreator(dispatch, book) {
+    return dispatch({type: "REMOVE_FROM_BASKET", book: book});
+}
+
 module.exports = {
     getBooksActionCreator: getBooksActionCreator,
     filterBooksActionCreator: filterBooksActionCreator,
     getBookDetailActionCreator: getBookDetailActionCreator,
-    addToBasketActionCreator: addToBasketActionCreator
+    addToBasketActionCreator: addToBasketActionCreator,
+    removeFromBasketActionCreator: removeFromBasketActionCreator
 };
