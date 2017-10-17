@@ -5,6 +5,9 @@ function reducer(state, action) {
             newState.books = action.payload;
             newState.filteredBooks = newState.books;
             break;
+        case "GET_COMMERCIAL_OFFERS":
+            newState.commercialOffers = action.payload;
+            break;
         case "FILTER_ITEM_LIST":
             newState.filter = action.filter;
             newState.filteredBooks = newState
