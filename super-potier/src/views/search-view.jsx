@@ -14,7 +14,7 @@ class SearchView extends React.Component {
         return (
             <div>
                 <FilterBook/>
-                <List books={this.props.filteredBooks || []}/>
+                <List mosaic books={this.props.filteredBooks || []}/>
             </div>
         )
     }

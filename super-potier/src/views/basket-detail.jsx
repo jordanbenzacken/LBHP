@@ -1,11 +1,12 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import List from '../components/list';
 
 class BasketDetail extends React.Component {
 
     render() {
         console.log(this.props);
-        const {basket} = this.props;
+        const { basket } = this.props;
         return (
             <div >
                 {this._renderBasketDetail(basket)}
@@ -16,7 +17,7 @@ class BasketDetail extends React.Component {
         if (basket) {
             return (
                 <div className='basket-detail'>
-                    {basket.map((book, i) => <div key={i}>{book.title}</div>)}
+                    <List books={basket} />
                 </div>
             )
         }
