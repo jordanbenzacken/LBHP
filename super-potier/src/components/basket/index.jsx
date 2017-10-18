@@ -1,8 +1,10 @@
 import React from 'react';
 import Badge from 'material-ui/Badge';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
+
 import './basket.css';
 
 class Basket extends React.Component {
@@ -18,7 +20,7 @@ class Basket extends React.Component {
         )
     };
     _renderBasketIcon() {
-        const basketCount = this.props.basket && this.props.basket.length;
+        const basketCount = this.props.basket.length;
         let badgeStyle;
         if (!basketCount) {
             badgeStyle = {
@@ -37,4 +39,14 @@ class Basket extends React.Component {
     }
 }
 
-export default connect((state = {}) => state, (dispatch, props) => Object.assign({}, props, {}))(Basket);
+Basket.propTypes = {
+    basket: PropTypes.array,
+};
+Basket.defaultProps = {
+    basket: []
+};
+
+export default connect(
+    (state = {}) => { return { basket: state.basket } },
+    (dispatch, props) => Object.assign({},
+        props, {}))(Basket);

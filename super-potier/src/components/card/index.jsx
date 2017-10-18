@@ -1,23 +1,24 @@
 import React from 'react';
 import './card.css';
-import {Link} from 'react-router-dom';
-import {addToBasketActionCreator, removeFromBasketActionCreator} from '../../redux/actions';
-import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
+import { addToBasketActionCreator, removeFromBasketActionCreator } from '../../redux/actions';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
 
 class Card extends React.Component {
     render() {
-        const {book, key, basket} = this.props;
+        const { book, basket } = this.props;
         return (
-            <div className='card' key={key}>
+            <div className='card' key={book.isbn}>
                 <Link to={"/detail/" + book.isbn}>
-                    <img src={book.cover} alt={book.title}/> {this._renderAction(book, basket)}
+                    <img src={book.cover} alt={book.title} /> {this._renderAction(book, basket)}
                     <div>{book.title}</div>
                 </Link>
             </div>
         )
     }
     _renderAction(book, basket) {
-        if (basket && basket.map(book => book.isbn).includes(book.isbn)) {
+        if (basket.map(book => book.isbn).includes(book.isbn)) {
             return (
                 <div onClick={(e) => this._removeFromBasket(e, book)}>
                     <i className="material-icons">remove_shopping_cart</i>
@@ -46,7 +47,26 @@ class Card extends React.Component {
             .removeFromBasketActionCreator(book);
     }
 }
-export default connect((state = {}) => state, (dispatch, props) => Object.assign({}, props, {
-    addToBasketActionCreator: addToBasketActionCreator.bind(null, dispatch),
-    removeFromBasketActionCreator: removeFromBasketActionCreator.bind(null, dispatch)
-}))(Card);
+
+Card.propTypes = {
+    addToBasketActionCreator: PropTypes.func.isRequired,
+    removeFromBasketActionCreator: PropTypes.func.isRequired,
+    book: PropTypes.object,
+    basket: PropTypes.array
+};
+Card.defaultProps = {
+    book: {},
+    basket: []
+};
+
+export default connect(
+    (state = {}) => {
+        return { book: state.book, basket: state.basket }
+    },
+    (dispatch, props) => Object.assign({},
+        props,
+        {
+            addToBasketActionCreator: addToBasketActionCreator.bind(null, dispatch),
+            removeFromBasketActionCreator: removeFromBasketActionCreator.bind(null, dispatch)
+        })
+)(Card);

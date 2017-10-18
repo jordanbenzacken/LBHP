@@ -1,6 +1,8 @@
 import React from 'react';
-import {getBookDetailActionCreator, addToBasketActionCreator} from '../redux/actions';
-import {connect} from 'react-redux';
+import { getBookDetailActionCreator, addToBasketActionCreator } from '../redux/actions';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
+
 
 class Detail extends React.Component {
     componentWillMount() {
@@ -9,8 +11,7 @@ class Detail extends React.Component {
             .getBookDetailActionCreator(this.props.match.params.isbn);
     }
     render() {
-        console.log(this.props);
-        const {detail} = this.props;
+        const { detail } = this.props;
         return (
             <div >
                 {this._renderDetail(detail)}
@@ -18,27 +19,25 @@ class Detail extends React.Component {
         )
     }
     _renderDetail(detail) {
-        if (detail) {
-            return (
-                <div className='book-detail'>
-                    <div className='first-child'>
-                        <div className='title'>
-                            {detail.title}
-                        </div>
-                        <div className='cover'>
-                            <img src={detail.cover} alt={detail.title}/>
-                        </div>
+        return (
+            <div className='book-detail'>
+                <div className='first-child'>
+                    <div className='title'>
+                        {detail.title}
                     </div>
-                    <div className='first-child'>
-                        {this._renderDescription(detail.synopsis)}
-                        {this._renderPrice(detail.price)}
-                        <div onClick={() => this._addToBasket(detail)}>
-                            <i className="material-icons">add_shopping_cart</i>
-                        </div>
+                    <div className='cover'>
+                        <img src={detail.cover} alt={detail.title} />
                     </div>
                 </div>
-            )
-        }
+                <div className='first-child'>
+                    {this._renderDescription(detail.synopsis)}
+                    {this._renderPrice(detail.price)}
+                    <div onClick={() => this._addToBasket(detail)}>
+                        <i className="material-icons">add_shopping_cart</i>
+                    </div>
+                </div>
+            </div>
+        )
     }
     _renderDescription(descriptionList) {
         return (
@@ -58,7 +57,19 @@ class Detail extends React.Component {
             .addToBasketActionCreator(detail);
     }
 }
-export default connect((state = {}) => state, (dispatch, props) => Object.assign({}, props, {
+
+Detail.propTypes = {
+    getBookDetailActionCreator: PropTypes.func.isRequired,
+    addToBasketActionCreator: PropTypes.func.isRequired,
+    match: PropTypes.any
+};
+Detail.defaultProps = {
+    detail: {
+        synopsis: []
+    }
+};
+
+export default connect((state = {}) => { return { detail: state.detail } }, (dispatch, props) => Object.assign({}, props, {
     getBookDetailActionCreator: getBookDetailActionCreator.bind(null, dispatch),
     addToBasketActionCreator: addToBasketActionCreator.bind(null, dispatch)
 }))(Detail);

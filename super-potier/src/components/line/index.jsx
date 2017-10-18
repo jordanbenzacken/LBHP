@@ -1,13 +1,14 @@
 import React from 'react';
 import { removeFromBasketActionCreator } from '../../redux/actions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
 import './line.css';
 
 class Line extends React.Component {
     render() {
-        const { book, key } = this.props;
+        const { book } = this.props;
         return (
-            <div className='line' key={key}>
+            <div className='line' key={book.isbn}>
                 <img src={book.cover} alt={book.title} />
                 <div>{book.title}</div>
                 <div className='action' onClick={(e) => this._removeFromBasket(e, book)}>
@@ -24,6 +25,15 @@ class Line extends React.Component {
             .removeFromBasketActionCreator(book);
     }
 }
-export default connect((state = {}) => state, (dispatch, props) => Object.assign({}, props, {
+
+Line.propTypes = {
+    removeFromBasketActionCreator: PropTypes.func.isRequired,
+    book: PropTypes.object,
+};
+Line.defaultProps = {
+    book: {}
+};
+
+export default connect(null, (dispatch, props) => Object.assign({}, props, {
     removeFromBasketActionCreator: removeFromBasketActionCreator.bind(null, dispatch)
 }))(Line);

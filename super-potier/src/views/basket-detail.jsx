@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import List from '../components/list';
 import { getCommercialOffers } from '../redux/actions.js';
+import PropTypes from 'prop-types'
 import '../styles/basket-detail.css'
 
 
@@ -19,41 +20,48 @@ class BasketDetail extends React.Component {
         getCommercialOffers(basket.map(book => book.isbn));
     }
     render() {
-        console.log(this.props);
         const { basket, commercialOffers } = this.props;
         return (
             <div >
                 {this._renderBasketDetail(basket)}
-                {commercialOffers && this._renderOffers(commercialOffers.offers)}
+                {this._renderOffers(commercialOffers.offers)}
             </div>
         )
     }
     _renderBasketDetail(basket) {
-        if (basket) {
-            return (
-                <div className='basket-detail'>
-                    <List books={basket} />
-                </div>
-            )
-        }
+        return (
+            <div className='basket-detail'>
+                <List books={basket} />
+            </div>
+        )
     }
     _renderOffers(offers) {
-        if (offers) {
-            const percentage = offers.find((offer) => offer.type === 'percentage');
-            const minus = offers.find((offer) => offer.type === 'minus');
-            const slice = offers.find((offer) => offer.type === 'slice');
-            return (
-                <div className='offers'>
-                    <div>{percentage.value}%</div>
-                    <div>{minus.value}€</div>
-                    <div>{slice.value}€</div>
-                    <div>/{slice.sliceValue}€</div>
-                </div>
-            )
-        }
+        const percentage = offers.find((offer) => offer.type === 'percentage');
+        const minus = offers.find((offer) => offer.type === 'minus');
+        const slice = offers.find((offer) => offer.type === 'slice');
+        return (
+            <div className='offers'>
+                <div>{percentage && percentage.value}%</div>
+                {minus && <div>{minus.value}€</div>}
+                {slice && <div>{slice.value}€</div>}
+                {slice && <div>/{slice.sliceValue}€</div>}
+            </div>
+        )
     }
-
 }
-export default connect((state = {}) => state, (dispatch, props) => Object.assign({}, props, {
+
+BasketDetail.propTypes = {
+    getCommercialOffers: PropTypes.func.isRequired,
+    basket: PropTypes.array,
+    commercialOffers: PropTypes.object
+};
+BasketDetail.defaultProps = {
+    commercialOffers: {
+        offers: []
+    },
+    basket: []
+};
+
+export default connect((state = {}) => { return { basket: state.basket, commercialOffers: state.commercialOffers } }, (dispatch, props) => Object.assign({}, props, {
     getCommercialOffers: getCommercialOffers.bind(null, dispatch)
 }))(BasketDetail);

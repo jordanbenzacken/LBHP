@@ -14,9 +14,9 @@ class List extends React.Component {
                     .books
                     .map((book, i) => {
                         if (this.props.mosaic) {
-                            return < Card key={i} book={book} />
+                            return < Card book={book} />
                         } else {
-                            return < Line key={i} book={book} />
+                            return < Line book={book} />
                         }
                     })
                 }
@@ -26,7 +26,6 @@ class List extends React.Component {
 }
 
 List.propTypes = {
-    key: PropTypes.number,
     book: PropTypes.array
 };
 
