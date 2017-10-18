@@ -6,13 +6,20 @@ import reducers from './redux/reducers';
 import App from './App.jsx';
 import registerServiceWorker from './registerServiceWorker';
 import thunk from 'redux-thunk';
-// use SASS ? See doc react-script. post css ? i18n , devtools, react-router
-// TODO : filter search, popin detail, add to basket with new view, header
-// package nicely
+import 'material-design-icons/iconfont/material-icons.css'
 
+// See doc react-script. post css ? i18n , devtools
+// TODO : popin detail, add to basket with new view, header, local storage ??
+// material compnents package nicely -- seearch nok (trim, contains)
+
+//
+//get basket after refresh.
+const persistedState = {
+    basket: JSON.parse(window.sessionStorage.getItem('basket'))
+};
 let store = createStore(reducers, {
-
-    books: []
+    books: [],
+    ...persistedState
 }, applyMiddleware(thunk));
 
 ReactDOM.render(

@@ -1,0 +1,16 @@
+.line {
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+    margin-top: 10px;  
+    .action {
+        margin-left: auto;
+        margin-right: 5px;
+    }
+    img {
+        margin: 0px 5px;
+        max-width: 100px;
+        max-height: 100px;
+        border-radius: 5%
+      }
+}

@@ -1,0 +1,12 @@
+.book-detail{
+    display: flex;
+    .title {
+        text-align: center;
+    }
+    .cover {
+        text-align: center;        
+        img {
+            max-width: 400px;
+        }
+    }
+}
