@@ -1,19 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { removeFromBasketActionCreator } from '../../redux/actions';
 import { connect } from 'react-redux';
 import './line.css';
 
 class Line extends React.Component {
     render() {
-        const { book, key, basket } = this.props;
+        const { book, key } = this.props;
         return (
             <div className='line' key={key}>
-                <div onClick={(e) => this._removeFromBasket(e, book)}>
-                    <i className="material-icons">remove_shopping_cart</i>
-                </div>
                 <img src={book.cover} alt={book.title} />
                 <div>{book.title}</div>
+                <div className='action' onClick={(e) => this._removeFromBasket(e, book)}>
+                    <i className="material-icons">remove_shopping_cart</i>
+                </div>
             </div>
         )
     }
