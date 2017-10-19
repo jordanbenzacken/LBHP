@@ -7,12 +7,12 @@ http://super-potier.herokuapp.com/
 
 ## LOCAL
 Possibilité de lancer en local :
-* `git clone
+* `git clone`
 * `npm install` (la première fois)
 * `npm start`
 
 * `npm test` pour lancer les tests
-* si FSEVENTS error, installer watchman :
+si FSEVENTS error, installer watchman :
 https://facebook.github.io/watchman/docs/install.html
 
 ## DIVERS
