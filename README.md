@@ -11,6 +11,10 @@ Possibilité de lancer en local :
 * npm install (la première fois)
 * npm start
 
+npm test pour lancer les tests
+si FSEVENTS error, installer watchman :
+https://facebook.github.io/watchman/docs/install.html
+
 ## DIVERS
 Choix :
 * React
