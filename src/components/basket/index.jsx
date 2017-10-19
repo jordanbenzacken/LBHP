@@ -42,11 +42,8 @@ class Basket extends React.Component {
 Basket.propTypes = {
     basket: PropTypes.array,
 };
-Basket.defaultProps = {
-    basket: []
-};
 
 export default connect(
-    (state = {}) => { return { basket: state.basket } },
+    (state = {}) => { return { basket: state.basket ||  [] } },
     (dispatch, props) => Object.assign({},
         props, {}))(Basket);
