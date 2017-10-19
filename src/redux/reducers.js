@@ -55,7 +55,9 @@ function reducer(state, action) {
                     .basket
                     .splice(removeIndex, 1);
             }
-
+            break;
+        case "REQUEST_FAILED":
+            console.warn(action.error);
             break;
         default:
             return state;

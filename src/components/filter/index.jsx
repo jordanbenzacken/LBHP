@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { connect } from 'react-redux';
-import { filterBooksActionCreator } from '../../redux/actions.js';
+import { filterBooksAction } from '../../redux/actions.js';
 import './filter.css';
 
 class FilterBook extends React.Component {
@@ -18,10 +18,10 @@ class FilterBook extends React.Component {
         )
     }
     _onChange(event, inputValue) {
-        this.props.filterBooksActionCreator(inputValue);
+        this.props.filterBooksAction(inputValue);
     }
 }
 
 export default connect(null, (dispatch, props) => Object.assign({}, props, {
-    filterBooksActionCreator: filterBooksActionCreator.bind(null, dispatch)
+    filterBooksAction: filterBooksAction.bind(null, dispatch)
 }))(FilterBook);

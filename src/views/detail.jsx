@@ -1,5 +1,5 @@
 import React from 'react';
-import { getBookDetailActionCreator, addToBasketActionCreator } from '../redux/actions';
+import { getBookDetailAction, addToBasketAction } from '../redux/actions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 
@@ -8,7 +8,7 @@ class Detail extends React.Component {
     componentWillMount() {
         this
             .props
-            .getBookDetailActionCreator(this.props.match.params.isbn);
+            .getBookDetailAction(this.props.match.params.isbn);
     }
     render() {
         const { detail } = this.props;
@@ -54,13 +54,13 @@ class Detail extends React.Component {
     _addToBasket(detail) {
         this
             .props
-            .addToBasketActionCreator(detail);
+            .addToBasketAction(detail);
     }
 }
 
 Detail.propTypes = {
-    getBookDetailActionCreator: PropTypes.func.isRequired,
-    addToBasketActionCreator: PropTypes.func.isRequired,
+    getBookDetailAction: PropTypes.func.isRequired,
+    addToBasketAction: PropTypes.func.isRequired,
     match: PropTypes.any
 };
 
@@ -71,6 +71,6 @@ export default connect((state = {}) => {
         }
     }
 }, (dispatch, props) => Object.assign({}, props, {
-    getBookDetailActionCreator: getBookDetailActionCreator.bind(null, dispatch),
-    addToBasketActionCreator: addToBasketActionCreator.bind(null, dispatch)
+    getBookDetailAction: getBookDetailAction.bind(null, dispatch),
+    addToBasketAction: addToBasketAction.bind(null, dispatch)
 }))(Detail);

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { getBooksActionCreator } from '../redux/actions.js';
+import { getBooksAction } from '../redux/actions.js';
 import List from '../components/list';
 import FilterBook from '../components/filter'
 
@@ -9,7 +9,7 @@ class SearchView extends React.Component {
     componentWillMount() {
         this
             .props
-            .getBooksActionCreator();
+            .getBooksAction();
     }
     render() {
         return (
@@ -21,7 +21,7 @@ class SearchView extends React.Component {
     }
 }
 SearchView.propTypes = {
-    getBooksActionCreator: PropTypes.func.isRequired
+    getBooksAction: PropTypes.func.isRequired
 };
 
 export default connect((state = {}) => {
@@ -29,5 +29,5 @@ export default connect((state = {}) => {
         filteredBooks: state.filteredBooks || []
     }
 }, (dispatch, props) => Object.assign({}, props, {
-    getBooksActionCreator: getBooksActionCreator.bind(null, dispatch)
+    getBooksAction: getBooksAction.bind(null, dispatch)
 }))(SearchView);
