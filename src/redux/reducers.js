@@ -15,7 +15,7 @@ function reducer(state, action) {
             newState.filter = action.filter;
             newState.filteredBooks = newState
                 .books
-                .filter((book) => book.title.toLowerCase().includes(newState.filter.toLowerCase()));
+                .filter((book) => book.title.toLowerCase().includes(newState.filter.toLowerCase()) || book.isbn.toLowerCase().includes(newState.filter.toLowerCase()));
             break;
         case "GET_ITEM_DETAIL":
             newState.detail = action
