@@ -8,10 +8,11 @@ class Line extends React.Component {
     render() {
         const { book } = this.props;
         return (
-            <div className='line' key={book.isbn}>
+            <div className='line'>
                 <img src={book.cover} alt={book.title} />
                 <div>{book.title}</div>
                 <div className='action' onClick={(e) => this._removeFromBasket(e, book)}>
+                    <div className='price'>{book.price} €</div>
                     <i className="material-icons">remove_shopping_cart</i>
                 </div>
             </div>

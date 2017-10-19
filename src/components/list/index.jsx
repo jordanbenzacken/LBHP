@@ -12,11 +12,11 @@ class List extends React.Component {
                 {this
                     .props
                     .books
-                    .map((book, i) => {
+                    .map((book) => {
                         if (this.props.mosaic) {
-                            return < Card book={book} />
+                            return < Card book={book} key={book.isbn} />
                         } else {
-                            return < Line book={book} />
+                            return < Line book={book} key={book.isbn} />
                         }
                     })
                 }
@@ -27,6 +27,9 @@ class List extends React.Component {
 
 List.propTypes = {
     book: PropTypes.array
+};
+List.defaultProps = {
+    books: []
 };
 
 export default List;

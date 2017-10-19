@@ -21,34 +21,34 @@ class Detail extends React.Component {
     _renderDetail(detail) {
         return (
             <div className='book-detail'>
-                <div className='first-child'>
-                    <div className='title'>
-                        {detail.title}
-                    </div>
+                <div className='title'>
+                    {detail.title}
+                </div>
+                <div className='flex-container'>
                     <div className='cover'>
                         <img src={detail.cover} alt={detail.title} />
                     </div>
-                </div>
-                <div className='first-child'>
-                    {this._renderDescription(detail.synopsis)}
-                    {this._renderPrice(detail.price)}
-                    <div onClick={() => this._addToBasket(detail)}>
-                        <i className="material-icons">add_shopping_cart</i>
+                    <div>
+                        {this._renderDescription(detail)}
                     </div>
                 </div>
             </div>
         )
     }
-    _renderDescription(descriptionList) {
+    _renderDescription(detail) {
         return (
             <div className='description'>
-                {descriptionList.map((description, i) => <p key={"synopsis-" + i}>{description}</p>)}
+                {detail.synopsis.map((description, i) => <p key={"synopsis-" + i}>{description}</p>)}
+                {this._renderPrice(detail.price)}
+                <div onClick={() => this._addToBasket(detail)}>
+                    <i className="material-icons">add_shopping_cart</i>
+                </div>
             </div>
         )
     }
     _renderPrice(price) {
         return (
-            <div className='price'>{price + ' $'}</div>
+            <div className='price'>{price + ' €'}</div>
         )
     }
     _addToBasket(detail) {
@@ -63,13 +63,14 @@ Detail.propTypes = {
     addToBasketActionCreator: PropTypes.func.isRequired,
     match: PropTypes.any
 };
-Detail.defaultProps = {
-    detail: {
-        synopsis: []
-    }
-};
 
-export default connect((state = {}) => { return { detail: state.detail } }, (dispatch, props) => Object.assign({}, props, {
+export default connect((state = {}) => {
+    return {
+        detail: state.detail || {
+            synopsis: []
+        }
+    }
+}, (dispatch, props) => Object.assign({}, props, {
     getBookDetailActionCreator: getBookDetailActionCreator.bind(null, dispatch),
     addToBasketActionCreator: addToBasketActionCreator.bind(null, dispatch)
 }))(Detail);

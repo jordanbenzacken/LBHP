@@ -1,0 +1,9 @@
+.basket-detail {
+    display: flex;
+    .offers {
+        padding: 20px;
+        &>div {
+            margin-top: 5px;
+        }
+    }
+}

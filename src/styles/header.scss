@@ -1,0 +1,16 @@
+.App-header{
+    text-align: center;
+    background-color: #FB8C00;
+    height: 50px;
+    padding: 20px;
+    color: white;
+    [data-component='basket']{
+
+    }        
+}
+
+[data-component="header"] {
+    display: flex;     
+    align-items: center;
+    justify-content: space-between;     
+}

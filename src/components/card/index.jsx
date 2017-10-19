@@ -9,10 +9,13 @@ class Card extends React.Component {
     render() {
         const { book, basket } = this.props;
         return (
-            <div className='card' key={book.isbn}>
+            <div className='card'>
                 <Link to={"/detail/" + book.isbn}>
-                    <img src={book.cover} alt={book.title} /> {this._renderAction(book, basket)}
-                    <div>{book.title}</div>
+                    <div className='title'>{book.title}</div>
+                    <img src={book.cover} alt={book.title} />
+                    <div className='action'>
+                        {this._renderAction(book, basket)}
+                    </div>
                 </Link>
             </div>
         )
@@ -28,6 +31,7 @@ class Card extends React.Component {
             return (
                 <div onClick={(e) => this._addToBasket(e, book)}>
                     <i className="material-icons">add_shopping_cart</i>
+                    <div className='price'>{book.price} €</div>
                 </div>
             )
         }
@@ -54,14 +58,13 @@ Card.propTypes = {
     book: PropTypes.object,
     basket: PropTypes.array
 };
-Card.defaultProps = {
-    book: {},
-    basket: []
-};
 
 export default connect(
     (state = {}) => {
-        return { book: state.book, basket: state.basket }
+        return {
+            book: state.book || {},
+            basket: state.basket || []
+        }
     },
     (dispatch, props) => Object.assign({},
         props,
