@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import List from '../components/list';
 import { getCommercialOffers } from '../redux/actions.js';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import RaisedButton from 'material-ui/RaisedButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../styles/basket-detail.css'
 
 
@@ -24,7 +26,7 @@ class BasketDetail extends React.Component {
         return (
             <div className='basket-detail'>
                 {this._renderBasketDetail(basket)}
-                {this._renderOffers(commercialOffers.offers)}
+                {this._renderOffer(commercialOffers.offers, commercialOffers.totalBrut)}
             </div>
         )
     }
@@ -35,23 +37,37 @@ class BasketDetail extends React.Component {
             </div>
         )
     }
-    _renderOffers(offers) {
-        const percentage = offers.find((offer) => offer.type === 'percentage');
-        const minus = offers.find((offer) => offer.type === 'minus');
-        const slice = offers.find((offer) => offer.type === 'slice');
+    _renderOffer(offers, totalBrut) {
+        let percentage, minus, slice, sliceValue;
+        offers.forEach(offer => {
+            if (offer.type === 'percentage') {
+                percentage = offer.value;
+            } else if (offer.type === 'minus') {
+                minus = offer.value;
+            } else if (offer.type === 'slice') {
+                slice = offer.value;
+                sliceValue = offer.sliceValue;
+            }
+        })
+        const promotion = totalBrut && minus && (minus + (Math.trunc(totalBrut / (sliceValue)) * slice));
         return (
             <div className='offers'>
-                {percentage &&
-                    <div>-{percentage.value}% on your total order
                 {minus &&
-                            <span>(-{minus.value}€)</span>}
+                    <div>-{percentage}% on your total order
+                {minus &&
+                            <span>( -{minus}€ )</span>}
                     </div>}
-                {slice &&
-                    <div>If you reach {slice.sliceValue}€ on your total order,
-                {slice &&
-                            <span>you'll have an addtional {slice.value}€ discount on your order</span>}
+                {minus &&
+                    <div>In addition, there is a {slice}€ discount every {sliceValue}€ ordered
                     </div>}
-            </div>
+
+                {minus &&
+                    <div>So you will pay {totalBrut} - {promotion} = {totalBrut - promotion}€
+                    </div>}
+                {this.props.basket.length > 0 && <MuiThemeProvider>
+                    <RaisedButton label="Order" onClick={() => alert('Thanks, your books will be sent very soon')} />
+                </MuiThemeProvider>}
+            </div >
         )
     }
 }

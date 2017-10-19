@@ -7,6 +7,9 @@ function reducer(state, action) {
             break;
         case "GET_COMMERCIAL_OFFERS":
             newState.commercialOffers = action.payload;
+            if (newState.basket.length > 0) {
+                newState.commercialOffers.totalBrut = newState.basket.map(book => book.price).reduce((a, b) => a + b);
+            }
             break;
         case "FILTER_ITEM_LIST":
             newState.filter = action.filter;
