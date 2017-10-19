@@ -22,7 +22,7 @@ class BasketDetail extends React.Component {
     render() {
         const { basket, commercialOffers } = this.props;
         return (
-            <div >
+            <div className='basket-detail'>
                 {this._renderBasketDetail(basket)}
                 {this._renderOffers(commercialOffers.offers)}
             </div>
@@ -30,7 +30,7 @@ class BasketDetail extends React.Component {
     }
     _renderBasketDetail(basket) {
         return (
-            <div className='basket-detail'>
+            <div className='detail'>
                 <List books={basket} />
             </div>
         )
@@ -41,10 +41,16 @@ class BasketDetail extends React.Component {
         const slice = offers.find((offer) => offer.type === 'slice');
         return (
             <div className='offers'>
-                <div>{percentage && percentage.value}%</div>
-                {minus && <div>{minus.value}€</div>}
-                {slice && <div>{slice.value}€</div>}
-                {slice && <div>/{slice.sliceValue}€</div>}
+                {percentage &&
+                    <div>-{percentage.value}% on your total order
+                {minus &&
+                            <span>(-{minus.value}€)</span>}
+                    </div>}
+                {slice &&
+                    <div>If you reach {slice.sliceValue}€ on your total order,
+                {slice &&
+                            <span>you'll have an addtional {slice.value}€ discount on your order</span>}
+                    </div>}
             </div>
         )
     }
