@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Basket from '../basket';
-import logo from '../../assets/polygon-harry.jpg';
+import logo from '../../assets/logo.svg';
 
 class Header extends React.Component {
     render() {
