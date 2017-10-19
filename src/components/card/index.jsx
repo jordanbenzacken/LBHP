@@ -11,8 +11,11 @@ class Card extends React.Component {
         return (
             <div className='card'>
                 <Link to={"/detail/" + book.isbn}>
-                    <img src={book.cover} alt={book.title} /> {this._renderAction(book, basket)}
-                    <div>{book.title}</div>
+                    <div className='title'>{book.title}</div>
+                    <img src={book.cover} alt={book.title} />
+                    <div className='action'>
+                        {this._renderAction(book, basket)}
+                    </div>
                 </Link>
             </div>
         )
@@ -28,6 +31,7 @@ class Card extends React.Component {
             return (
                 <div onClick={(e) => this._addToBasket(e, book)}>
                     <i className="material-icons">add_shopping_cart</i>
+                    <div className='price'>{book.price} €</div>
                 </div>
             )
         }

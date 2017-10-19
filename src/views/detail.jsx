@@ -48,7 +48,7 @@ class Detail extends React.Component {
     }
     _renderPrice(price) {
         return (
-            <div className='price'>{price + ' $'}</div>
+            <div className='price'>{price + ' €'}</div>
         )
     }
     _addToBasket(detail) {

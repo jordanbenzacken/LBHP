@@ -21,10 +21,11 @@ class Basket extends React.Component {
     };
     _renderBasketIcon() {
         const basketCount = this.props.basket.length;
-        let badgeStyle;
-        if (!basketCount) {
+        let badgeStyle = { backgroundColor: 'transparent' };
+        if (basketCount) {
             badgeStyle = {
-                backgroundColor: 'transparent'
+                backgroundColor: 'white',
+                color: '#fc8b01'
             }
         }
         return (
@@ -44,6 +45,6 @@ Basket.propTypes = {
 };
 
 export default connect(
-    (state = {}) => { return { basket: state.basket ||  [] } },
+    (state = {}) => { return { basket: state.basket || [] } },
     (dispatch, props) => Object.assign({},
         props, {}))(Basket);
