@@ -1,12 +1,18 @@
 .book-detail{
     display: flex;
+    font-size: 14px;
+    .first-child {
+        margin: 10px;
+    }
     .title {
         text-align: center;
+        font-size: 20px;
     }
     .cover {
-        text-align: center;        
+        text-align: center;    
+        margin-top: 10px;    
         img {
-            max-width: 400px;
+            max-width: 200px;
         }
     }
 }
