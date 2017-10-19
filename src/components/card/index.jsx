@@ -54,14 +54,13 @@ Card.propTypes = {
     book: PropTypes.object,
     basket: PropTypes.array
 };
-Card.defaultProps = {
-    book: {},
-    basket: []
-};
 
 export default connect(
     (state = {}) => {
-        return { book: state.book, basket: state.basket }
+        return {
+            book: state.book || {},
+            basket: state.basket || []
+        }
     },
     (dispatch, props) => Object.assign({},
         props,

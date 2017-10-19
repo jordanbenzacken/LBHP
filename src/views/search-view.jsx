@@ -23,10 +23,11 @@ class SearchView extends React.Component {
 SearchView.propTypes = {
     getBooksActionCreator: PropTypes.func.isRequired
 };
-SearchView.defaultProps = {
-    filteredBooks: []
-};
 
-export default connect((state = {}) => { return { filteredBooks: state.filteredBooks } }, (dispatch, props) => Object.assign({}, props, {
+export default connect((state = {}) => {
+    return {
+        filteredBooks: state.filteredBooks || []
+    }
+}, (dispatch, props) => Object.assign({}, props, {
     getBooksActionCreator: getBooksActionCreator.bind(null, dispatch)
 }))(SearchView);

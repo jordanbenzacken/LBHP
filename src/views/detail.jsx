@@ -63,13 +63,14 @@ Detail.propTypes = {
     addToBasketActionCreator: PropTypes.func.isRequired,
     match: PropTypes.any
 };
-Detail.defaultProps = {
-    detail: {
-        synopsis: []
-    }
-};
 
-export default connect((state = {}) => { return { detail: state.detail } }, (dispatch, props) => Object.assign({}, props, {
+export default connect((state = {}) => {
+    return {
+        detail: state.detail || {
+            synopsis: []
+        }
+    }
+}, (dispatch, props) => Object.assign({}, props, {
     getBookDetailActionCreator: getBookDetailActionCreator.bind(null, dispatch),
     addToBasketActionCreator: addToBasketActionCreator.bind(null, dispatch)
 }))(Detail);

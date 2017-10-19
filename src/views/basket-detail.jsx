@@ -55,13 +55,14 @@ BasketDetail.propTypes = {
     basket: PropTypes.array,
     commercialOffers: PropTypes.object
 };
-BasketDetail.defaultProps = {
-    commercialOffers: {
-        offers: []
-    },
-    basket: []
-};
 
-export default connect((state = {}) => { return { basket: state.basket, commercialOffers: state.commercialOffers } }, (dispatch, props) => Object.assign({}, props, {
+export default connect((state = {}) => {
+    return {
+        basket: state.basket || [],
+        commercialOffers: state.commercialOffers || {
+            offers: []
+        }
+    }
+}, (dispatch, props) => Object.assign({}, props, {
     getCommercialOffers: getCommercialOffers.bind(null, dispatch)
 }))(BasketDetail);
