@@ -9,7 +9,7 @@ class Card extends React.Component {
     render() {
         const { book, basket } = this.props;
         return (
-            <div className='card' key={book.isbn}>
+            <div className='card'>
                 <Link to={"/detail/" + book.isbn}>
                     <img src={book.cover} alt={book.title} /> {this._renderAction(book, basket)}
                     <div>{book.title}</div>
