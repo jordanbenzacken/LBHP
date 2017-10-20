@@ -1,6 +1,6 @@
 const services = require("../services");
 
-function getBooksActionCreator(dispatch) {
+function getBooksAction(dispatch) {
     services
         .getPotierList
         .then(data => dispatch({ type: "GET_ITEM_LIST", payload: data }), error => dispatch({ type: "REQUEST_FAILED", error: error }))
@@ -12,29 +12,29 @@ function getCommercialOffers(dispatch, isbnList) {
         .then(data => dispatch({ type: "GET_COMMERCIAL_OFFERS", payload: data }), error => dispatch({ type: "REQUEST_FAILED", error: error }))
 }
 
-function filterBooksActionCreator(dispatch, filter) {
+function filterBooksAction(dispatch, filter) {
     return dispatch({ type: "FILTER_ITEM_LIST", filter: filter });
 }
 
-function getBookDetailActionCreator(dispatch, isbn) {
+function getBookDetailAction(dispatch, isbn) {
     services
         .getPotierList
         .then(data => dispatch({ type: "GET_ITEM_DETAIL", payload: data, isbn: isbn }), error => dispatch({ type: "REQUEST_FAILED", error: error }))
 }
 
-function addToBasketActionCreator(dispatch, newBook) {
+function addToBasketAction(dispatch, newBook) {
     return dispatch({ type: "ADD_TO_BASKET", newBook: newBook });
 }
 
-function removeFromBasketActionCreator(dispatch, book) {
+function removeFromBasketAction(dispatch, book) {
     return dispatch({ type: "REMOVE_FROM_BASKET", book: book });
 }
 
 module.exports = {
-    getBooksActionCreator: getBooksActionCreator,
+    getBooksAction: getBooksAction,
     getCommercialOffers: getCommercialOffers,
-    filterBooksActionCreator: filterBooksActionCreator,
-    getBookDetailActionCreator: getBookDetailActionCreator,
-    addToBasketActionCreator: addToBasketActionCreator,
-    removeFromBasketActionCreator: removeFromBasketActionCreator
+    filterBooksAction: filterBooksAction,
+    getBookDetailAction: getBookDetailAction,
+    addToBasketAction: addToBasketAction,
+    removeFromBasketAction: removeFromBasketAction
 };

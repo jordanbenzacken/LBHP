@@ -1,7 +1,7 @@
 import React from 'react';
 import './card.css';
 import { Link } from 'react-router-dom';
-import { addToBasketActionCreator, removeFromBasketActionCreator } from '../../redux/actions';
+import { addToBasketAction, removeFromBasketAction } from '../../redux/actions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 
@@ -41,20 +41,20 @@ class Card extends React.Component {
         e.preventDefault();
         this
             .props
-            .addToBasketActionCreator(book);
+            .addToBasketAction(book);
     }
     _removeFromBasket(e, book) {
         //avoid redirecting.
         e.preventDefault();
         this
             .props
-            .removeFromBasketActionCreator(book);
+            .removeFromBasketAction(book);
     }
 }
 
 Card.propTypes = {
-    addToBasketActionCreator: PropTypes.func.isRequired,
-    removeFromBasketActionCreator: PropTypes.func.isRequired,
+    addToBasketAction: PropTypes.func.isRequired,
+    removeFromBasketAction: PropTypes.func.isRequired,
     book: PropTypes.object,
     basket: PropTypes.array
 };
@@ -69,7 +69,7 @@ export default connect(
     (dispatch, props) => Object.assign({},
         props,
         {
-            addToBasketActionCreator: addToBasketActionCreator.bind(null, dispatch),
-            removeFromBasketActionCreator: removeFromBasketActionCreator.bind(null, dispatch)
+            addToBasketAction: addToBasketAction.bind(null, dispatch),
+            removeFromBasketAction: removeFromBasketAction.bind(null, dispatch)
         })
 )(Card);

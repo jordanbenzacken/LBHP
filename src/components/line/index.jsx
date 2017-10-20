@@ -1,5 +1,5 @@
 import React from 'react';
-import { removeFromBasketActionCreator } from '../../redux/actions';
+import { removeFromBasketAction } from '../../redux/actions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import './line.css';
@@ -23,12 +23,12 @@ class Line extends React.Component {
         e.preventDefault();
         this
             .props
-            .removeFromBasketActionCreator(book);
+            .removeFromBasketAction(book);
     }
 }
 
 Line.propTypes = {
-    removeFromBasketActionCreator: PropTypes.func.isRequired,
+    removeFromBasketAction: PropTypes.func.isRequired,
     book: PropTypes.object,
 };
 Line.defaultProps = {
@@ -36,5 +36,5 @@ Line.defaultProps = {
 };
 
 export default connect(null, (dispatch, props) => Object.assign({}, props, {
-    removeFromBasketActionCreator: removeFromBasketActionCreator.bind(null, dispatch)
+    removeFromBasketAction: removeFromBasketAction.bind(null, dispatch)
 }))(Line);
