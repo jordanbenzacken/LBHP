@@ -21,4 +21,4 @@ Axes d'améliorations :
 * Améliorer l'UX
 * Passe UI
 * Labels i18n
-* Améliorer le comportement de la recherche
+* Améliorer le comportement de recherche
